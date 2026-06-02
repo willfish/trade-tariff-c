@@ -791,7 +791,7 @@ static int build_fallback_measure_unit(DutyCalculatorMeasureUnitModel *model,
                                        const char *unit_key)
 {
     const MeasurementUnitModel *unit = measurement_unit_for_code(aggregate, unit_code);
-    const char *qualifier = strlen(unit_key) > 3 ? unit_key + 3 : "";
+    const char *qualifier_suffix = strlen(unit_key) > 3 ? unit_key + 3 : "";
     const char *code = unit != NULL && unit->measurement_unit_code != NULL ? unit->measurement_unit_code : unit_code;
     const char *description = unit != NULL && unit->description != NULL ? unit->description : unit_code;
     size_t question_len = strlen("Please enter unit: ") + strlen(description) + 1;
@@ -800,9 +800,16 @@ static int build_fallback_measure_unit(DutyCalculatorMeasureUnitModel *model,
     model->key = copy_string(unit_key);
     if (model->key == NULL ||
         !set_string_field(&model->measurement_unit_code, code) ||
-        !set_string_field(&model->measurement_unit_qualifier_code, qualifier) ||
         !set_nullable_string_field(&model->abbreviation, unit == NULL ? NULL : unit->abbreviation) ||
         !set_null_field(&model->unit)) {
+        return 0;
+    }
+
+    if (qualifier_suffix[0] == '\0') {
+        if (!set_null_field(&model->measurement_unit_qualifier_code)) {
+            return 0;
+        }
+    } else if (!set_string_field(&model->measurement_unit_qualifier_code, qualifier_suffix)) {
         return 0;
     }
 

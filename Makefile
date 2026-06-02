@@ -44,7 +44,7 @@ CMOCKA_TESTS += $(BUILD_DIR)/tests/test_measure_condition_component_presenter
 CMOCKA_TESTS += $(BUILD_DIR)/tests/test_measure_duty_expression_presenter
 CMOCKA_TESTS += $(BUILD_DIR)/tests/test_classification_presenter
 
-.PHONY: all clean debug asan ubsan test test-asan unit cmocka parity parity-all parity-one parity-smoke run
+.PHONY: all clean debug asan ubsan test test-asan unit cmocka parity parity-all parity-one parity-smoke generate-parity-oracles run
 
 all: $(BIN)
 
@@ -498,6 +498,9 @@ parity-one: $(BIN)
 
 parity-smoke: $(BIN)
 	./scripts/parity_smoke.sh
+
+generate-parity-oracles: $(BIN)
+	./scripts/generate_parity_oracles.sh
 
 clean:
 	rm -rf $(BUILD_DIR)

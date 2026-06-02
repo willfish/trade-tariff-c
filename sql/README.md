@@ -1,9 +1,9 @@
 # SQL templates
 
-`commodity_response_legacy.sql` is the preserved legacy commodity renderer SQL.
-It still returns the nearly complete JSON:API document and exists as a
-behaviour-preserving boundary while typed repositories and yyjson renderers
-replace response slices incrementally.
+`legacy/commodity_response_legacy.sql` is the archived PostgreSQL JSON renderer from
+the pre-typed spike. It is not linked into the binary; the production path uses typed
+repositories and `commodity_tree_slice_renderer.c`. Keep the file as a historical
+reference until exhaustive parity no longer needs it for comparison.
 
 The template uses explicit placeholders:
 

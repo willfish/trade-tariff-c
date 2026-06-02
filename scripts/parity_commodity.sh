@@ -2,7 +2,7 @@
 set -euo pipefail
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-backend_root="$(cd "$repo_root/.." && pwd)"
+backend_root="${TRADE_TARIFF_BACKEND:-$repo_root/../hmrc/trade-tariff-backend}"
 
 service="${SERVICE:-uk}"
 commodity_id="${COMMODITY_ID:-8207809000}"

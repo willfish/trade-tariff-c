@@ -62,7 +62,12 @@ This maps to the Rails path:
 
 `CommoditiesController#find_commodity -> CachedCommodityService -> CommodityPresenter -> JSONAPI serializer -> optional ResponseFilter`.
 
-Query parameters and filters are currently out of scope. Requests containing `?` are rejected with `400 Bad Request` rather than silently ignored.
+Supported query parameters (others return `400` with a JSON:API error):
+
+- `include=` — parsed against the static registry in `commodity_include_plan.c` (Rails default includes when omitted)
+- `filter[meursing_additional_code_id]=` — passed through to the typed request context
+
+Duty-calculator metadata uses overlay JSON from `db/additional_codes.json` and `db/measurement_units.json` (copied from `trade-tariff-backend/db/`; see `db/README.md`).
 
 There is intentionally no caching. Each commodity request executes fresh database reads.
 
@@ -90,6 +95,15 @@ SERVICE=xi COMMODITY_ID=8207809000 make parity
 ```
 
 Regression checks should be added to `tests/parity-smoke/<service>.txt` whenever a parity failure is discovered and fixed. `make test` runs C self-tests plus read-mode smoke parity for any local oracle snapshots. `make parity-smoke` requires every listed smoke case to have an oracle snapshot and pass.
+
+Generate oracle snapshots (needs `trade-tariff-backend`, PostgreSQL, and direnv):
+
+```sh
+DATABASE_URL=postgres://postgres@localhost/tariff_development make generate-parity-oracles
+make parity-smoke
+```
+
+Set `TRADE_TARIFF_BACKEND` if the Rails app is not at `../hmrc/trade-tariff-backend`.
 
 Full exhaustive UK parity is still the completion gate:
 

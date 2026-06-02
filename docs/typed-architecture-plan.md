@@ -4,6 +4,28 @@ This is a handoff plan for migrating the C commodity endpoint away from the curr
 
 The target reader is an agent or engineer implementing the C version. Assume they know C but may not know the Rails Trade Tariff domain.
 
+For day-to-day navigation of the current code, prefer `docs/implementation-qa.md`.
+
+## Current status (2026-06)
+
+The typed path is **production code**. `commodity_service.c` loads a `CommodityAggregate` and renders with `commodity_tree_slice_renderer.c` (yyjson). The archived SQL renderer lives at `sql/legacy/commodity_response_legacy.sql` and is not linked into the binary.
+
+| Phase | State |
+|-------|--------|
+| 0 Parity gate | `make test-asan` in CI; smoke needs local oracle snapshots |
+| 1 SQL files + loader | Done (`sql_loader.c`, per-family `sql/*.sql`) |
+| 2 Include plan | Done (`commodity_include_plan.c`, query `include=` supported) |
+| 3 Commodity + ancestors | Done |
+| 4 Measures | Done (`measure_graph_loader.c`) |
+| 5 Measure components | Done |
+| 6 Conditions, footnotes, areas, codes | Done (presenter/renderer split) |
+| 7 Quotas | Done |
+| 8 Remove legacy renderer | Runtime removed; SQL archive kept for reference |
+
+**Remaining work:** exhaustive Rails parity (`make parity-all`), grow `tests/parity-smoke/*.txt`, commit oracle snapshots after `make generate-parity-oracles` with a populated DB, and shrink presenter logic still buried in `commodity_tree_slice_renderer.c`.
+
+Duty-calculator overlay JSON is vendored under `db/` (from `trade-tariff-backend/db/`).
+
 ## Goal
 
 Build a C commodity endpoint that can match Rails parity while remaining understandable and extensible.
@@ -465,7 +487,7 @@ Move the current SQL template out of `commodity_json_renderer.c`.
 Target:
 
 ```text
-sql/commodity_response_legacy.sql
+sql/legacy/commodity_response_legacy.sql
 src/sql_loader.c
 src/sql_loader.h
 ```
@@ -685,24 +707,8 @@ The real improvement comes when SQL returns rows and C owns assembly/rendering.
 
 ## Immediate Next Work
 
-The recommended next PR-sized task:
-
-1. Move the current giant SQL template into `sql/commodity_response_legacy.sql`.
-2. Add a tiny SQL loader or build-time embed step.
-3. Keep output identical.
-4. Add a short README note explaining that this is the legacy renderer.
-5. Run `make test` and `make parity-smoke`.
-
-The recommended second task:
-
-1. Add `CommodityIncludePlan`.
-2. Encode Rails default includes.
-3. Add unit tests for include parsing.
-4. Do not yet change response rendering.
-
-The recommended first typed slice:
-
-1. Implement commodity + ancestors as typed rows from `goods_nomenclature_tree_nodes`.
-2. Build a small yyjson renderer for just that slice.
-3. Compare typed output against the legacy renderer in tests.
-4. Keep the legacy renderer as the production path until the slice is complete.
+1. Refresh parity oracles: `DATABASE_URL=… make generate-parity-oracles`, then `make parity-smoke`.
+2. Fix parity failures commodity-by-commodity with `make parity-one` (see `docs/implementation-qa.md` checklist).
+3. Add each fixed commodity to `tests/parity-smoke/<service>.txt` with a short reason.
+4. Extract remaining duty-calculator / formatting rules from `commodity_tree_slice_renderer.c` into named presenters with unit tests.
+5. Delete `sql/legacy/commodity_response_legacy.sql` only after exhaustive parity no longer needs it.
