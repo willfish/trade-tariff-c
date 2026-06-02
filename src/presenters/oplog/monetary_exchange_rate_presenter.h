@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_MONETARY_EXCHANGE_RATE_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_MONETARY_EXCHANGE_RATE_OPLOG_PRESENTER_H
+
+#include "models/oplog/monetary_exchange_rate_model.h"
+
+const char *monetary_exchange_rate_oplog_presenter_resource_type(void);
+const char *monetary_exchange_rate_oplog_presenter_id(const MonetaryExchangeRateOplogModel *model);
+int monetary_exchange_rate_oplog_presenter_self_test(void);
+
+#endif

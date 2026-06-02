@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_MEASURE_EXCLUDED_GEOGRAPHICAL_AREA_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_MEASURE_EXCLUDED_GEOGRAPHICAL_AREA_OPLOG_PRESENTER_H
+
+#include "models/oplog/measure_excluded_geographical_area_model.h"
+
+const char *measure_excluded_geographical_area_oplog_presenter_resource_type(void);
+const char *measure_excluded_geographical_area_oplog_presenter_id(const MeasureExcludedGeographicalAreaOplogModel *model);
+int measure_excluded_geographical_area_oplog_presenter_self_test(void);
+
+#endif

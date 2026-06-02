@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_EXPLICIT_ABROGATION_REGULATION_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_EXPLICIT_ABROGATION_REGULATION_OPLOG_PRESENTER_H
+
+#include "models/oplog/explicit_abrogation_regulation_model.h"
+
+const char *explicit_abrogation_regulation_oplog_presenter_resource_type(void);
+const char *explicit_abrogation_regulation_oplog_presenter_id(const ExplicitAbrogationRegulationOplogModel *model);
+int explicit_abrogation_regulation_oplog_presenter_self_test(void);
+
+#endif

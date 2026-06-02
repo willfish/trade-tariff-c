@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_QUOTA_ORDER_NUMBER_ORIGIN_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_QUOTA_ORDER_NUMBER_ORIGIN_OPLOG_PRESENTER_H
+
+#include "models/oplog/quota_order_number_origin_model.h"
+
+const char *quota_order_number_origin_oplog_presenter_resource_type(void);
+const char *quota_order_number_origin_oplog_presenter_id(const QuotaOrderNumberOriginOplogModel *model);
+int quota_order_number_origin_oplog_presenter_self_test(void);
+
+#endif

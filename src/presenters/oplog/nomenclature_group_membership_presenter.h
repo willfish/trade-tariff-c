@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_NOMENCLATURE_GROUP_MEMBERSHIP_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_NOMENCLATURE_GROUP_MEMBERSHIP_OPLOG_PRESENTER_H
+
+#include "models/oplog/nomenclature_group_membership_model.h"
+
+const char *nomenclature_group_membership_oplog_presenter_resource_type(void);
+const char *nomenclature_group_membership_oplog_presenter_id(const NomenclatureGroupMembershipOplogModel *model);
+int nomenclature_group_membership_oplog_presenter_self_test(void);
+
+#endif

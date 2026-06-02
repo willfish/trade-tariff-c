@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_GEOGRAPHICAL_AREA_DESCRIPTION_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_GEOGRAPHICAL_AREA_DESCRIPTION_OPLOG_PRESENTER_H
+
+#include "models/oplog/geographical_area_description_model.h"
+
+const char *geographical_area_description_oplog_presenter_resource_type(void);
+const char *geographical_area_description_oplog_presenter_id(const GeographicalAreaDescriptionOplogModel *model);
+int geographical_area_description_oplog_presenter_self_test(void);
+
+#endif

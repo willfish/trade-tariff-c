@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_MEASUREMENT_UNIT_QUALIFIER_DESCRIPTION_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_MEASUREMENT_UNIT_QUALIFIER_DESCRIPTION_OPLOG_PRESENTER_H
+
+#include "models/oplog/measurement_unit_qualifier_description_model.h"
+
+const char *measurement_unit_qualifier_description_oplog_presenter_resource_type(void);
+const char *measurement_unit_qualifier_description_oplog_presenter_id(const MeasurementUnitQualifierDescriptionOplogModel *model);
+int measurement_unit_qualifier_description_oplog_presenter_self_test(void);
+
+#endif

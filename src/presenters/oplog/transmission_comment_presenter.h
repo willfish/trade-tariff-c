@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_TRANSMISSION_COMMENT_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_TRANSMISSION_COMMENT_OPLOG_PRESENTER_H
+
+#include "models/oplog/transmission_comment_model.h"
+
+const char *transmission_comment_oplog_presenter_resource_type(void);
+const char *transmission_comment_oplog_presenter_id(const TransmissionCommentOplogModel *model);
+int transmission_comment_oplog_presenter_self_test(void);
+
+#endif

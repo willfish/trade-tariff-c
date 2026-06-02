@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_FOOTNOTE_DESCRIPTION_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_FOOTNOTE_DESCRIPTION_OPLOG_PRESENTER_H
+
+#include "models/oplog/footnote_description_model.h"
+
+const char *footnote_description_oplog_presenter_resource_type(void);
+const char *footnote_description_oplog_presenter_id(const FootnoteDescriptionOplogModel *model);
+int footnote_description_oplog_presenter_self_test(void);
+
+#endif

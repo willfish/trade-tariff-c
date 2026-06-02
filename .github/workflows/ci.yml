@@ -1,0 +1,24 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Build and test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@v17
+
+      - name: Cache Nix store
+        uses: DeterminateSystems/magic-nix-cache-action@v13
+
+      - name: Run sanitizer test suite
+        run: nix develop -c make test-asan

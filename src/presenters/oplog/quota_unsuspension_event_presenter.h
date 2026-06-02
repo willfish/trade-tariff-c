@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_QUOTA_UNSUSPENSION_EVENT_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_QUOTA_UNSUSPENSION_EVENT_OPLOG_PRESENTER_H
+
+#include "models/oplog/quota_unsuspension_event_model.h"
+
+const char *quota_unsuspension_event_oplog_presenter_resource_type(void);
+const char *quota_unsuspension_event_oplog_presenter_id(const QuotaUnsuspensionEventOplogModel *model);
+int quota_unsuspension_event_oplog_presenter_self_test(void);
+
+#endif

@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_MEASURE_PARTIAL_TEMPORARY_STOP_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_MEASURE_PARTIAL_TEMPORARY_STOP_OPLOG_PRESENTER_H
+
+#include "models/oplog/measure_partial_temporary_stop_model.h"
+
+const char *measure_partial_temporary_stop_oplog_presenter_resource_type(void);
+const char *measure_partial_temporary_stop_oplog_presenter_id(const MeasurePartialTemporaryStopOplogModel *model);
+int measure_partial_temporary_stop_oplog_presenter_self_test(void);
+
+#endif

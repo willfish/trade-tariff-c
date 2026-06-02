@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_QUOTA_CLOSED_AND_TRANSFERRED_EVENT_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_QUOTA_CLOSED_AND_TRANSFERRED_EVENT_OPLOG_PRESENTER_H
+
+#include "models/oplog/quota_closed_and_transferred_event_model.h"
+
+const char *quota_closed_and_transferred_event_oplog_presenter_resource_type(void);
+const char *quota_closed_and_transferred_event_oplog_presenter_id(const QuotaClosedAndTransferredEventOplogModel *model);
+int quota_closed_and_transferred_event_oplog_presenter_self_test(void);
+
+#endif

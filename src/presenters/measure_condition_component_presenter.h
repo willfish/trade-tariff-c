@@ -1,0 +1,11 @@
+#ifndef TRADE_TARIFF_C_MEASURE_CONDITION_COMPONENT_PRESENTER_H
+#define TRADE_TARIFF_C_MEASURE_CONDITION_COMPONENT_PRESENTER_H
+
+#include "models/measure_condition_component_model.h"
+
+const char *measure_condition_component_presenter_resource_type(void);
+char *measure_condition_component_presenter_id(const MeasureConditionComponentModel *model);
+const char *measure_condition_component_presenter_duty_expression_abbreviation(const MeasureConditionComponentModel *model);
+int measure_condition_component_presenter_self_test(void);
+
+#endif

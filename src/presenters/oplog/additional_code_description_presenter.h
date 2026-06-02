@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_ADDITIONAL_CODE_DESCRIPTION_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_ADDITIONAL_CODE_DESCRIPTION_OPLOG_PRESENTER_H
+
+#include "models/oplog/additional_code_description_model.h"
+
+const char *additional_code_description_oplog_presenter_resource_type(void);
+const char *additional_code_description_oplog_presenter_id(const AdditionalCodeDescriptionOplogModel *model);
+int additional_code_description_oplog_presenter_self_test(void);
+
+#endif

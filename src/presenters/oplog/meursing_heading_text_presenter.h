@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_MEURSING_HEADING_TEXT_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_MEURSING_HEADING_TEXT_OPLOG_PRESENTER_H
+
+#include "models/oplog/meursing_heading_text_model.h"
+
+const char *meursing_heading_text_oplog_presenter_resource_type(void);
+const char *meursing_heading_text_oplog_presenter_id(const MeursingHeadingTextOplogModel *model);
+int meursing_heading_text_oplog_presenter_self_test(void);
+
+#endif

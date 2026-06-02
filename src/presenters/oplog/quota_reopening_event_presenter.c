@@ -1,0 +1,20 @@
+#include "presenters/oplog/quota_reopening_event_presenter.h"
+
+#include <string.h>
+
+const char *quota_reopening_event_oplog_presenter_resource_type(void)
+{
+    return "quota_reopening_event";
+}
+
+const char *quota_reopening_event_oplog_presenter_id(const QuotaReopeningEventOplogModel *model)
+{
+    return model == NULL ? NULL : model->quota_definition_sid;
+}
+
+int quota_reopening_event_oplog_presenter_self_test(void)
+{
+    QuotaReopeningEventOplogModel model = { .quota_definition_sid = "id" };
+    return strcmp(quota_reopening_event_oplog_presenter_resource_type(), "quota_reopening_event") == 0 &&
+           strcmp(quota_reopening_event_oplog_presenter_id(&model), "id") == 0;
+}

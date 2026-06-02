@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_GOODS_NOMENCLATURE_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_GOODS_NOMENCLATURE_OPLOG_PRESENTER_H
+
+#include "models/oplog/goods_nomenclature_model.h"
+
+const char *goods_nomenclature_oplog_presenter_resource_type(void);
+const char *goods_nomenclature_oplog_presenter_id(const GoodsNomenclatureOplogModel *model);
+int goods_nomenclature_oplog_presenter_self_test(void);
+
+#endif

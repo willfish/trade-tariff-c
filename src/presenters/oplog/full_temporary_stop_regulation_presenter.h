@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_FULL_TEMPORARY_STOP_REGULATION_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_FULL_TEMPORARY_STOP_REGULATION_OPLOG_PRESENTER_H
+
+#include "models/oplog/full_temporary_stop_regulation_model.h"
+
+const char *full_temporary_stop_regulation_oplog_presenter_resource_type(void);
+const char *full_temporary_stop_regulation_oplog_presenter_id(const FullTemporaryStopRegulationOplogModel *model);
+int full_temporary_stop_regulation_oplog_presenter_self_test(void);
+
+#endif

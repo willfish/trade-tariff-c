@@ -1,0 +1,9 @@
+#ifndef TRADE_TARIFF_C_DUTY_EXPRESSION_DESCRIPTION_PRESENTER_H
+#define TRADE_TARIFF_C_DUTY_EXPRESSION_DESCRIPTION_PRESENTER_H
+
+#include "models/duty_expression_description_model.h"
+
+const char *duty_expression_description_presenter_abbreviation(const DutyExpressionDescriptionModel *model);
+int duty_expression_description_presenter_self_test(void);
+
+#endif

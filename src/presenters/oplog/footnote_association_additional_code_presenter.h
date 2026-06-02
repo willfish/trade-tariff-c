@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_FOOTNOTE_ASSOCIATION_ADDITIONAL_CODE_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_FOOTNOTE_ASSOCIATION_ADDITIONAL_CODE_OPLOG_PRESENTER_H
+
+#include "models/oplog/footnote_association_additional_code_model.h"
+
+const char *footnote_association_additional_code_oplog_presenter_resource_type(void);
+const char *footnote_association_additional_code_oplog_presenter_id(const FootnoteAssociationAdditionalCodeOplogModel *model);
+int footnote_association_additional_code_oplog_presenter_self_test(void);
+
+#endif

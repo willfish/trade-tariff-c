@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_MONETARY_EXCHANGE_PERIOD_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_MONETARY_EXCHANGE_PERIOD_OPLOG_PRESENTER_H
+
+#include "models/oplog/monetary_exchange_period_model.h"
+
+const char *monetary_exchange_period_oplog_presenter_resource_type(void);
+const char *monetary_exchange_period_oplog_presenter_id(const MonetaryExchangePeriodOplogModel *model);
+int monetary_exchange_period_oplog_presenter_self_test(void);
+
+#endif

@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_QUOTA_BLOCKING_PERIOD_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_QUOTA_BLOCKING_PERIOD_OPLOG_PRESENTER_H
+
+#include "models/oplog/quota_blocking_period_model.h"
+
+const char *quota_blocking_period_oplog_presenter_resource_type(void);
+const char *quota_blocking_period_oplog_presenter_id(const QuotaBlockingPeriodOplogModel *model);
+int quota_blocking_period_oplog_presenter_self_test(void);
+
+#endif

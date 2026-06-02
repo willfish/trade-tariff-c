@@ -1,0 +1,5 @@
+build/
+*.o
+*.d
+trade-tariff-c
+.ccls-cache/

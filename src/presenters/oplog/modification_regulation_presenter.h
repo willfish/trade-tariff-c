@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_MODIFICATION_REGULATION_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_MODIFICATION_REGULATION_OPLOG_PRESENTER_H
+
+#include "models/oplog/modification_regulation_model.h"
+
+const char *modification_regulation_oplog_presenter_resource_type(void);
+const char *modification_regulation_oplog_presenter_id(const ModificationRegulationOplogModel *model);
+int modification_regulation_oplog_presenter_self_test(void);
+
+#endif

@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_FTS_REGULATION_ACTION_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_FTS_REGULATION_ACTION_OPLOG_PRESENTER_H
+
+#include "models/oplog/fts_regulation_action_model.h"
+
+const char *fts_regulation_action_oplog_presenter_resource_type(void);
+const char *fts_regulation_action_oplog_presenter_id(const FtsRegulationActionOplogModel *model);
+int fts_regulation_action_oplog_presenter_self_test(void);
+
+#endif

@@ -1,0 +1,17 @@
+#ifndef TRADE_TARIFF_C_QUOTA_CLOSED_AND_TRANSFERRED_EVENT_PRESENTER_H
+#define TRADE_TARIFF_C_QUOTA_CLOSED_AND_TRANSFERRED_EVENT_PRESENTER_H
+
+#include "models/quota_closed_and_transferred_event_model.h"
+
+const char *quota_closed_and_transferred_event_presenter_resource_type(void);
+char *quota_closed_and_transferred_event_presenter_id(const QuotaClosedAndTransferredEventModel *model);
+char *quota_closed_and_transferred_event_presenter_quota_definition_measurement_unit(
+    const QuotaClosedAndTransferredEventModel *model);
+char *quota_closed_and_transferred_event_presenter_target_quota_definition_measurement_unit(
+    const QuotaClosedAndTransferredEventModel *model);
+const QuotaClosedAndTransferredEventModel *quota_closed_and_transferred_event_presenter_for_target_definition(
+    const QuotaClosedAndTransferredEventModelList *events,
+    const char *target_quota_definition_sid);
+int quota_closed_and_transferred_event_presenter_self_test(void);
+
+#endif

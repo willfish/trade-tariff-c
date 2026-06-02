@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_EXPORT_REFUND_NOMENCLATURE_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_EXPORT_REFUND_NOMENCLATURE_OPLOG_PRESENTER_H
+
+#include "models/oplog/export_refund_nomenclature_model.h"
+
+const char *export_refund_nomenclature_oplog_presenter_resource_type(void);
+const char *export_refund_nomenclature_oplog_presenter_id(const ExportRefundNomenclatureOplogModel *model);
+int export_refund_nomenclature_oplog_presenter_self_test(void);
+
+#endif

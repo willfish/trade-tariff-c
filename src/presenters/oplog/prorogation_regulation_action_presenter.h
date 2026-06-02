@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_PROROGATION_REGULATION_ACTION_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_PROROGATION_REGULATION_ACTION_OPLOG_PRESENTER_H
+
+#include "models/oplog/prorogation_regulation_action_model.h"
+
+const char *prorogation_regulation_action_oplog_presenter_resource_type(void);
+const char *prorogation_regulation_action_oplog_presenter_id(const ProrogationRegulationActionOplogModel *model);
+int prorogation_regulation_action_oplog_presenter_self_test(void);
+
+#endif

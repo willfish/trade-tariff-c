@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_MEURSING_TABLE_CELL_COMPONENT_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_MEURSING_TABLE_CELL_COMPONENT_OPLOG_PRESENTER_H
+
+#include "models/oplog/meursing_table_cell_component_model.h"
+
+const char *meursing_table_cell_component_oplog_presenter_resource_type(void);
+const char *meursing_table_cell_component_oplog_presenter_id(const MeursingTableCellComponentOplogModel *model);
+int meursing_table_cell_component_oplog_presenter_self_test(void);
+
+#endif

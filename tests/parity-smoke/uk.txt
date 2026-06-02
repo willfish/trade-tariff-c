@@ -1,0 +1,14 @@
+# Curated UK commodity parity smoke set.
+# Format: commodity_id reason
+4412331012 goods-nomenclature-consigned-country-formatting
+4015120000 measurement-unit-verbose-expansion
+4701001000 measurement-unit-nbsp-percent-normalisation
+6204625910 current-tail-regression-coverage
+6907210000 additional-code-description-formatting
+7002320000 description-trim-dollar-superscript-marker
+7102100000 measurement-unit-overlay-expansion
+7312108112 applicable-additional-codes-single-none-option
+8414592560 nbspace-before-break-description-formatting
+8485100000 actual-heading-validity-selection
+8516500000 preference-code-112-autonomous-tariff-suspension
+8543400000 duty-calculator-negative-measure-sid-and-missing-unit-shape

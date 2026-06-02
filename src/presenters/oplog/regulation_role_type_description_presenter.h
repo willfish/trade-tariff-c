@@ -1,0 +1,10 @@
+#ifndef TRADE_TARIFF_C_REGULATION_ROLE_TYPE_DESCRIPTION_OPLOG_PRESENTER_H
+#define TRADE_TARIFF_C_REGULATION_ROLE_TYPE_DESCRIPTION_OPLOG_PRESENTER_H
+
+#include "models/oplog/regulation_role_type_description_model.h"
+
+const char *regulation_role_type_description_oplog_presenter_resource_type(void);
+const char *regulation_role_type_description_oplog_presenter_id(const RegulationRoleTypeDescriptionOplogModel *model);
+int regulation_role_type_description_oplog_presenter_self_test(void);
+
+#endif

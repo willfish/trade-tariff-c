@@ -1,0 +1,12 @@
+#ifndef TRADE_TARIFF_C_GOODS_NOMENCLATURE_DESCRIPTION_PRESENTER_H
+#define TRADE_TARIFF_C_GOODS_NOMENCLATURE_DESCRIPTION_PRESENTER_H
+
+#include "models/goods_nomenclature_description.h"
+
+char *goods_nomenclature_description_presenter_description(const GoodsNomenclatureDescriptionModel *model);
+char *goods_nomenclature_description_presenter_description_plain(const GoodsNomenclatureDescriptionModel *model);
+char *goods_nomenclature_description_presenter_formatted_description(const GoodsNomenclatureDescriptionModel *model);
+char *goods_nomenclature_description_presenter_consigned_from(const GoodsNomenclatureDescriptionModel *model);
+int goods_nomenclature_description_presenter_self_test(void);
+
+#endif
