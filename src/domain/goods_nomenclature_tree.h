@@ -27,6 +27,7 @@ void goods_nomenclature_tree_node_free(GoodsNomenclatureTreeNode *node);
 void goods_nomenclature_tree_node_list_free(GoodsNomenclatureTreeNodeList *list);
 int goods_nomenclature_tree_node_list_append(GoodsNomenclatureTreeNodeList *list,
                                              GoodsNomenclatureTreeNode node);
+int goods_nomenclature_tree_node_is_ten_digit_goods_nomenclature(const GoodsNomenclatureTreeNode *node);
 int goods_nomenclature_tree_self_test(void);
 
 #endif

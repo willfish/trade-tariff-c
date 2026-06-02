@@ -66,6 +66,4 @@ LEFT JOIN LATERAL (
   ORDER BY p.validity_start_date DESC
   LIMIT 1
 ) description ON true
-WHERE ancestor.goods_nomenclature_item_id NOT LIKE '__00000000'
-  AND ancestor.goods_nomenclature_item_id NOT LIKE '____000000'
 ORDER BY ancestor.position

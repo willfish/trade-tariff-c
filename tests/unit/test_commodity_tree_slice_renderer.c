@@ -366,7 +366,7 @@ static void renders_root_and_ancestor_slice(void **state)
 
     assert_true(goods_nomenclature_tree_node_list_append(
         &aggregate.ancestors,
-        node("100", "8708000000", "10", "1", "870800000010", "3", "Parts and accessories", 0)));
+        node("100", "8708100000", "10", "1", "870810000010", "3", "Parts and accessories", 0)));
     assert_true(goods_nomenclature_tree_node_list_append(
         &aggregate.ancestors,
         node("200", "8708990000", "10", "2", "870899000010", "4", "Other", 0)));
@@ -413,7 +413,7 @@ static void renders_root_and_ancestor_slice(void **state)
     yyjson_val *first_included_attrs = yyjson_obj_get(first_included, "attributes");
     assert_string_equal(string_at(first_ref, "id", NULL), "100");
     assert_string_equal(string_at(first_ref, "type", NULL), "commodity");
-    assert_string_equal(string_at(first_included_attrs, "goods_nomenclature_item_id", NULL), "8708000000");
+    assert_string_equal(string_at(first_included_attrs, "goods_nomenclature_item_id", NULL), "8708100000");
     assert_string_equal(string_at(first_included_attrs, "description_plain", NULL), "Parts and accessories");
 
     yyjson_doc_free(doc);
@@ -432,7 +432,7 @@ static void include_plan_controls_included_resources_without_removing_relationsh
 
     assert_true(goods_nomenclature_tree_node_list_append(
         &aggregate.ancestors,
-        node("100", "8708000000", "10", "1", "870800000010", "3", "Parts and accessories", 0)));
+        node("100", "8708100000", "10", "1", "870810000010", "3", "Parts and accessories", 0)));
     assert_true(measure_model_list_append(&aggregate.applicable_measures, measure("1", "103", "0")));
     assert_true(measure_component_model_list_append(&aggregate.measure_components, component("1", "01")));
 
@@ -914,8 +914,8 @@ static void typed_slice_preserves_root_and_ancestor_fields(void **state)
     assert_string_equal(string_at(typed_data, "id", NULL), string_at(legacy_data, "id", NULL));
     assert_string_equal(string_at(typed_attrs, "goods_nomenclature_item_id", NULL),
                         string_at(legacy_attrs, "goods_nomenclature_item_id", NULL));
-    assert_string_equal(string_at(typed_attrs, "number_indents", NULL),
-                        string_at(legacy_attrs, "number_indents", NULL));
+    assert_int_equal((int)yyjson_get_int(yyjson_obj_get(typed_attrs, "number_indents")),
+                     atoi(string_at(legacy_attrs, "number_indents", NULL)));
     assert_true(yyjson_get_bool(yyjson_obj_get(typed_attrs, "declarable")) ==
                 yyjson_get_bool(yyjson_obj_get(legacy_attrs, "declarable")));
     assert_int_equal(yyjson_arr_size(typed_ancestor_refs), yyjson_arr_size(legacy_ancestor_refs));

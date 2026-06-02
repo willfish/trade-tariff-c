@@ -32,10 +32,12 @@ nix develop -c make test-asan
 
 ## Run
 
-Populate the local database from the merged production dump:
+Populate the local database from the merged production dump (credentials from the team secrets store, not committed here):
 
 ```sh
-curl --silent -u "${TARIFF_DUMP_USER}:${TARIFF_DUMP_PASSWORD}" https://dumps.trade-tariff.service.gov.uk/tariff-merged-production.sql.gz | gunzip | psql tariff_development
+curl --silent -u "${TARIFF_DUMP_USER}:${TARIFF_DUMP_PASSWORD}" \
+  https://dumps.trade-tariff.service.gov.uk/tariff-merged-production.sql.gz \
+  | gunzip | psql tariff_development
 ```
 
 ```sh

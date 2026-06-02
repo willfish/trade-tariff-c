@@ -1,5 +1,6 @@
 #include "renderers/commodity_tree_slice_renderer.h"
 
+#include "domain/goods_nomenclature_tree.h"
 #include "domain/jsonapi_include_index.h"
 #include "models/goods_nomenclature_description.h"
 #include "presenters/additional_code_presenter.h"
@@ -60,6 +61,24 @@ static int add_string_or_null(yyjson_mut_doc *doc,
         return yyjson_mut_obj_add_null(doc, obj, key);
     }
     return yyjson_mut_obj_add_strcpy(doc, obj, key, value);
+}
+
+static int add_int_string_or_null(yyjson_mut_doc *doc,
+                                  yyjson_mut_val *obj,
+                                  const char *key,
+                                  const char *value)
+{
+    if (value == NULL) {
+        return yyjson_mut_obj_add_null(doc, obj, key);
+    }
+
+    char *end = NULL;
+    long parsed = strtol(value, &end, 10);
+    if (end == value || (end != NULL && *end != '\0')) {
+        return 0;
+    }
+
+    return yyjson_mut_obj_add_int(doc, obj, key, (int)parsed);
 }
 
 static int add_metadata_string_field(yyjson_mut_doc *doc,
@@ -192,7 +211,7 @@ static yyjson_mut_val *commodity_attributes(yyjson_mut_doc *doc,
     int ok =
         yyjson_mut_obj_add_strcpy(doc, attributes, "producline_suffix", node->producline_suffix) &&
         add_string_or_null(doc, attributes, "description", description) &&
-        add_string_or_null(doc, attributes, "number_indents", node->number_indents) &&
+        add_int_string_or_null(doc, attributes, "number_indents", node->number_indents) &&
         yyjson_mut_obj_add_strcpy(doc, attributes, "goods_nomenclature_item_id", node->goods_nomenclature_item_id) &&
         add_string_or_null(doc, attributes, "formatted_description", formatted_description) &&
         add_string_or_null(doc, attributes, "description_plain", description_plain) &&
@@ -387,10 +406,16 @@ static yyjson_mut_val *ancestor_relationship(yyjson_mut_doc *doc,
     }
 
     for (size_t i = 0; i < ancestors->len; i++) {
+        const GoodsNomenclatureTreeNode *ancestor = &ancestors->items[i];
+
+        if (!goods_nomenclature_tree_node_is_ten_digit_goods_nomenclature(ancestor)) {
+            continue;
+        }
+
         yyjson_mut_val *ref = jsonapi_resource_identifier(
             doc,
             commodity_presenter_resource_type(),
-            commodity_presenter_tree_node_id(&ancestors->items[i]));
+            commodity_presenter_tree_node_id(ancestor));
         if (ref == NULL || !yyjson_mut_arr_append(data, ref)) {
             return NULL;
         }
@@ -579,8 +604,14 @@ char *commodity_tree_slice_render_jsonapi_with_plan(const CommodityAggregate *ag
 
     if (include_enabled(plan, COMMODITY_INCLUDE_ANCESTORS)) {
         for (size_t i = 0; i < aggregate->ancestors.len; i++) {
+            const GoodsNomenclatureTreeNode *ancestor = &aggregate->ancestors.items[i];
+
+            if (!goods_nomenclature_tree_node_is_ten_digit_goods_nomenclature(ancestor)) {
+                continue;
+            }
+
             yyjson_mut_val *resource = commodity_resource(doc,
-                                                          &aggregate->ancestors.items[i],
+                                                          ancestor,
                                                           service,
                                                           aggregate,
                                                           0);
@@ -588,7 +619,7 @@ char *commodity_tree_slice_render_jsonapi_with_plan(const CommodityAggregate *ag
                 !append_included_resource(&included_index,
                                           included,
                                           commodity_presenter_resource_type(),
-                                          commodity_presenter_tree_node_id(&aggregate->ancestors.items[i]),
+                                          commodity_presenter_tree_node_id(ancestor),
                                           resource)) {
                 jsonapi_include_index_free(&included_index);
                 yyjson_mut_doc_free(doc);

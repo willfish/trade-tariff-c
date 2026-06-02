@@ -57,6 +57,25 @@ int goods_nomenclature_tree_node_list_append(GoodsNomenclatureTreeNodeList *list
     return 1;
 }
 
+int goods_nomenclature_tree_node_is_ten_digit_goods_nomenclature(const GoodsNomenclatureTreeNode *node)
+{
+    const char *item_id = node == NULL ? NULL : node->goods_nomenclature_item_id;
+
+    if (item_id == NULL || strlen(item_id) != 10) {
+        return 0;
+    }
+
+    if (memcmp(item_id + 2, "00000000", 8) == 0) {
+        return 0;
+    }
+
+    if (memcmp(item_id + 4, "000000", 6) == 0) {
+        return 0;
+    }
+
+    return 1;
+}
+
 static char *copy_literal(const char *value)
 {
     size_t len = strlen(value);
@@ -85,11 +104,23 @@ int goods_nomenclature_tree_self_test(void)
         .has_chemicals = 0,
     };
 
+    GoodsNomenclatureTreeNode chapter = {
+        .goods_nomenclature_item_id = copy_literal("4400000000"),
+    };
+    GoodsNomenclatureTreeNode heading = {
+        .goods_nomenclature_item_id = copy_literal("4412000000"),
+    };
+
     int ok = goods_nomenclature_tree_node_list_append(&list, node) &&
              list.len == 1 &&
              strcmp(list.items[0].goods_nomenclature_item_id, "8543400000") == 0 &&
-             list.items[0].leaf == 1;
+             list.items[0].leaf == 1 &&
+             goods_nomenclature_tree_node_is_ten_digit_goods_nomenclature(&list.items[0]) &&
+             !goods_nomenclature_tree_node_is_ten_digit_goods_nomenclature(&chapter) &&
+             !goods_nomenclature_tree_node_is_ten_digit_goods_nomenclature(&heading);
 
+    goods_nomenclature_tree_node_free(&chapter);
+    goods_nomenclature_tree_node_free(&heading);
     goods_nomenclature_tree_node_list_free(&list);
     return ok;
 }
